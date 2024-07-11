@@ -1,9 +1,16 @@
 import { calculateInvestmentResults, formatter } from '../util/investment.js';
 
 
+
 export default function Results({ input }) {
   const results = [];
   calculateInvestmentResults(input, results);
+
+    // 에러 : TypeError: Cannot read properties of undefined (reading 'valueEndOfYear')
+    if (results.length === 0) {
+        return <p className="center">Invalid input data provided.</p>
+    }
+
   const initialInvestment =
     results[0].valueEndOfYear -
     results[0].interest -
